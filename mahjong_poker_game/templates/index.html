@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mahjong Poker Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="game">
+        <div id="board">
+            <div id="community-tiles-section">
+                <p>Community Tiles:</p>
+                <div id="community-tiles"></div>
+            </div>
+            <div id="player-tiles-section">
+                <p>Player tiles:</p>
+                <div id="player-tiles">
+                    {% for tile in player_tiles %}
+                        <img src="{{ url_for('static', filename='images/' ~ tile ~ '.png') }}" alt="{{ tile }}">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div id="actions">
+            <button id="bet-button" onclick="bettingAct('bet')">ベット</button>
+            <button id="check-button" onclick="bettingAct('check')">チェック</button>
+            <button id="call-button" onclick="bettingAct('call')">コール</button>
+            <button id="raise-button" onclick="bettingAct('raise')">レイズ</button>
+            <button id="fold-button" onclick="bettingAct('fold')">フォールド</button>
+            <button id="allin-button" onclick="bettingAct('allin')">オールイン</button>
+        </div>
+        <div id="info">
+            <p><span id = "round">{{ round }}</p>
+            <p>Player Points: <span id="player-points">{{ player_points }}</span></p>
+            <p>Current Bet: <span id="current-bet">{{ current_bet }}</span></p>
+            <p>Pot: <span id="pot">{{ pot }}</span></p>
+            <div id="result">
+                <p id="winner"></p>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
