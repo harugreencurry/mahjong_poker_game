@@ -21,8 +21,6 @@ def simulate_holdem(tehai, community_hai,pot,bet_amount,com_round_bet, num_oppon
     
     num_wins = sum(1 for _ in range(num_trials) if trial())
     odds = num_wins / num_trials
-    # コンピュータの確率表示
-    print(str(odds * 100) + "%")
     if odds != 1:
         desired_bet = int(odds * pot / (1 - odds)) - com_round_bet
     else:
